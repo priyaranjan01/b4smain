@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>952973184761-8fhd1eutfdl77tsdnrhn75e8tknsb90k.apps.googleusercontent.com</string>
+	<string>152396274962-dscks59ffs52g0so1bcenue670s0oop9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.952973184761-8fhd1eutfdl77tsdnrhn75e8tknsb90k</string>
+	<string>com.googleusercontent.apps.152396274962-dscks59ffs52g0so1bcenue670s0oop9</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBeKY575Vr3CKGOZT2IcDzlkBqtkNsH320</string>
+	<string>AIzaSyBxZcJgT5bhr516VNyPYdUwINjQ1RgGoME</string>
 	<key>GCM_SENDER_ID</key>
-	<string>952973184761</string>
+	<string>152396274962</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>goteso.WKWebview</string>
+	<string>com.random.attendance</string>
 	<key>PROJECT_ID</key>
-	<string>signin-30eb3</string>
+	<string>trackingapp-62ce7</string>
 	<key>STORAGE_BUCKET</key>
-	<string>signin-30eb3.appspot.com</string>
+	<string>trackingapp-62ce7.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:952973184761:ios:7f9f3db2643711a3999c28</string>
-	<key>DATABASE_URL</key>
-	<string>https://signin-30eb3.firebaseio.com</string>
+	<string>1:152396274962:ios:4ca4b9d51fa0373944a7cb</string>
 </dict>
 </plist>
