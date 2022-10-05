@@ -96,8 +96,81 @@ class HomeVC: UIViewController , SideMenuViewControllerDelegate {
         ])
         callUserAPI()
         getAttendanceApi()
+        askLocation()
+    }
+    let kLocationCompultion = "Location must enabled. Go to Setting > Fleet Managment > Location > Always (Click)."
+
+    func askLocation()
+    {
+      guard let aadhaarNum = UserDefaults.standard.value(forKey: "aadharNumber") as? String
+        else {
+            return
+        }
+        if aadhaarNum != "515196051321"
+         {
+            if CLLocationManager.locationServicesEnabled() {
+                switch CLLocationManager.authorizationStatus() {
+                    case .notDetermined, .restricted, .denied, .authorizedWhenInUse:
+
+                    self.showAlert(message: kLocationCompultion, title: "Alert!", image: #imageLiteral(resourceName: "LocationAlert"), otherButtons:nil, cancelTitle: "Settings", cancelAction: { (action) in
+                     guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                         return
+                     }
+                     if UIApplication.shared.canOpenURL(settingsUrl) {
+                         UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                             print("Settings opened: \(success)") // Prints true
+                         })
+                     }
+                 })
+                    case .authorizedAlways:
+                        print("Access")
+                    @unknown default:
+                        break
+                }
+            } else {
+                print("Location services are not enabled")
+            }
+        }
+
     }
     
+    //MARK: - - show Alert
+    func showAlert(message: String?, title:String? , image: UIImage? = nil, otherButtons:[String:((UIAlertAction)-> ())]? = nil, cancelTitle: String = "OK", cancelAction: ((UIAlertAction)-> ())? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: cancelTitle, style: .default, handler: cancelAction))
+
+        if image != nil {
+            let imageView = UIImageView(frame: CGRect(x: 10, y: 50, width: 250, height: 230))
+            imageView.image = imageWithImage(sourceImage: image!, scaledToWidth: 250).0
+            imageView.frame = CGRect(x: 10, y: 100, width: imageWithImage(sourceImage: image!, scaledToWidth: 250).1, height: imageWithImage(sourceImage: image!, scaledToWidth: 250).2)// Your image here...
+            alert.view.addSubview(imageView)
+            let height: NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: imageView.frame.size.height + 150)
+            let width: NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+            alert.view.addConstraint(height)
+            alert.view.addConstraint(width)
+
+        }
+
+        if otherButtons != nil {
+            for key in otherButtons!.keys {
+                alert.addAction(UIAlertAction(title: key, style: .default, handler: otherButtons![key]))
+            }
+        }
+        present(alert, animated: true, completion: nil)
+    }
+    func imageWithImage (sourceImage:UIImage, scaledToWidth: CGFloat) -> (UIImage, CGFloat, CGFloat) {
+        let oldWidth = sourceImage.size.width
+        let scaleFactor = scaledToWidth / oldWidth
+        
+        let newHeight = sourceImage.size.height * scaleFactor
+        let newWidth = oldWidth * scaleFactor
+        
+        UIGraphicsBeginImageContext(CGSize(width:newWidth, height:newHeight))
+        sourceImage.draw(in: CGRect(x:0, y:0, width:newWidth, height:newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return (newImage!, newWidth, newHeight)
+    }
     var outBool = false
     func calculateDistance()
     {

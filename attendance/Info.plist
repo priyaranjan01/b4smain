@@ -28,11 +28,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Please allow access to your location for better user experience and help in marking the attandence of user location wise.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>Please allow access to your location for better user experience and help in marking the attandence of user location wise.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Please allow access to your location for better user experience and help in marking the attandence of user location wise.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
